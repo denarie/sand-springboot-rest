@@ -91,7 +91,6 @@ public class Sand {
      */
     @ManyToOne(optional = true, fetch=FetchType.EAGER, cascade = {CascadeType.REFRESH})
     @JoinColumn(name="LandID", unique = false, nullable = true)
-    @NotNull
     private Country country;
 
     /**
