@@ -20,8 +20,8 @@ import java.math.BigDecimal;
  *
  */
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @Entity
 @Table(name = "t_sand")

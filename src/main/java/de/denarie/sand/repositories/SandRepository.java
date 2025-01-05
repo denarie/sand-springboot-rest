@@ -15,5 +15,5 @@ import java.util.UUID;
 
 @RepositoryRestResource(collectionResourceRel = "sand", path = "sand")
 public interface SandRepository extends PagingAndSortingRepository<Sand, Long>, CrudRepository<Sand,Long> {
-    List<Sand> findByName(@Param("name") String name);
+    Page<Sand> findByLongnameLikeIgnoreCase(@Param("name") String name, Pageable pageable);
 }
