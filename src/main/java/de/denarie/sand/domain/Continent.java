@@ -28,7 +28,7 @@ public class Continent {
     private Integer id;
 
     /**
-     * the german name of the country
+     * the german name of the continent
      * TODO add more languages
      */
     @Size(max = 50)
