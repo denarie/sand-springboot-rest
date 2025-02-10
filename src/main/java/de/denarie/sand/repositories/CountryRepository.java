@@ -4,6 +4,7 @@ import de.denarie.sand.domain.Continent;
 import de.denarie.sand.domain.Country;
 import de.denarie.sand.domain.Person;
 import de.denarie.sand.domain.Sand;
+import de.denarie.sand.projections.CountryListProjection;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -14,7 +15,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
-@RepositoryRestResource(collectionResourceRel = "country", path = "country")
+@RepositoryRestResource(collectionResourceRel = "country", path = "country", excerptProjection= CountryListProjection.class)
 public interface CountryRepository extends PagingAndSortingRepository<Country, Long>, CrudRepository<Country,Long> {
     Page<Country> findByNameDeLikeIgnoreCase(@Param("name") String name, Pageable pageable);
 

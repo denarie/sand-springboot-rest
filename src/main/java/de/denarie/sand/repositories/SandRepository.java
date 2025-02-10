@@ -1,6 +1,7 @@
 package de.denarie.sand.repositories;
 
 import de.denarie.sand.domain.Sand;
+import de.denarie.sand.projections.SandListProjection;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -12,7 +13,7 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import java.util.List;
 
 
-@RepositoryRestResource(collectionResourceRel = "sand", path = "sand")
+@RepositoryRestResource(collectionResourceRel = "sand", path = "sand", excerptProjection= SandListProjection.class)
 public interface SandRepository extends PagingAndSortingRepository<Sand, Long>, CrudRepository<Sand,Long> {
     Page<Sand> findByLongnameLikeIgnoreCase(@Param("name") String name, Pageable pageable);
     Page<Sand> findByCountryId(@Param("countryId") Integer countryId, Pageable pageable);
