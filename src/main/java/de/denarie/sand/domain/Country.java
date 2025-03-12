@@ -3,11 +3,14 @@ package de.denarie.sand.domain;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import java.util.ArrayList;
-import java.util.List;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Country domain object.
@@ -97,6 +100,7 @@ public class Country {
     /**
      * true if the country no longer exists
      */
+    @Builder.Default
     @NotNull
     @Column(name = "historisch", nullable = false)
     private Boolean historycal = false;
@@ -132,11 +136,12 @@ public class Country {
      * Continents a country does belong to.
      * It is a many to many relationship because there exist countries that have territory on several continents, e.g. France with its territories Outre Mer.
      */
+    @Builder.Default
     @ManyToMany(fetch = FetchType.LAZY)
     // TODO not working @OrderBy("ID")
     @JoinTable(name = "t_b_laender_erdteile", //
             joinColumns = { @JoinColumn(name = "LandID", referencedColumnName = "ID") }, //
             inverseJoinColumns = { @JoinColumn(name = "ErdteilID", referencedColumnName = "ID") })
-    private List<Continent> continents = new ArrayList<Continent>();
+    private Set<Continent> continents = new HashSet<Continent>();
 
 }

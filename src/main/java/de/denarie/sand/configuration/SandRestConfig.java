@@ -31,7 +31,7 @@ public class SandRestConfig implements RepositoryRestConfigurer {
         HttpMethod[] theUnsupportedActions = {HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE};
 
         config.getExposureConfiguration()
-                //.forDomainType(Sand.class) für alle nicht erlauben
+                //.forDomainType(Sand.class) disable for every domain type
                 .withItemExposure((metadata, httpMethods) -> httpMethods.disable(theUnsupportedActions))
                 .withCollectionExposure((metadata, httpMethods) -> httpMethods.disable(theUnsupportedActions));
 

@@ -9,7 +9,7 @@ import lombok.*;
  * Month domain object.
  * This object exists because the old access database used a separate table to store the german name for each month.
  *
- * TODO redesign, add more languages
+ * TODO redesign
  *
  */
 @Data

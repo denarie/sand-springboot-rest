@@ -3,10 +3,13 @@ package de.denarie.sand.domain;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Person domain object. A person is someone who collected a sand item.
@@ -33,8 +36,9 @@ public class Person {
     @Column(name = "Bemerkung")
     private String remark;
 
+    @Builder.Default
     @ManyToMany(mappedBy = "persons", fetch = FetchType.LAZY)
-    private List<Sand> sands = new ArrayList<Sand>();
+    private Set<Sand> sands = new HashSet<Sand>();
 
 //    @PreRemove
 //    private void removePersonCheck() throws PersonDeleteRestrictException {

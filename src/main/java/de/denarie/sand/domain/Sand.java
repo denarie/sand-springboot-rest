@@ -5,25 +5,23 @@ import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import java.util.ArrayList;
-import java.util.List;
+import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * The sand domain object.
  * Represents an item in the sand collection.
  *
  */
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
 @Builder
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "t_sand")
 public class Sand {
 
@@ -110,17 +108,28 @@ public class Sand {
     /**
      * The persons who collected this sand item
      */
+    @Builder.Default
     @ManyToMany(fetch=FetchType.LAZY,  cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinTable(name = "t_b_sand_leute", //
             joinColumns = { @JoinColumn(name = "SandID", referencedColumnName = "ID") }, //
             inverseJoinColumns = { @JoinColumn(name = "LeutID", referencedColumnName = "ID") })
-    private List<Person> persons = new ArrayList<Person>();
+    private Set<Person> persons = new HashSet<Person>();
 
     /**
      * The links for this sand item
      */
     @OneToMany(mappedBy="sand", fetch=FetchType.LAZY, cascade = {CascadeType.ALL})
-    private List<Link> links = new ArrayList<Link>();
+    private Set<Link> links = new HashSet<>();
+
+    public void addPerson(Person person) {
+        this.persons.add(person);
+        person.getSands().add(this);
+    }
+
+    public void removePerson(Person person) {
+        this.persons.remove(person);
+        person.getSands().remove(this);
+    }
 
 //  @Version
 //  private long version = 0; TODO Add version to handle concurrent modification
