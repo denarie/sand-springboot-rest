@@ -1,4 +1,4 @@
-# Sand SpringBoot Rest
+# Sand Collectors Demo Applications: SpringBoot Data REST Backend
 
 This is the sand collection backend of the sand collection applications.
 It was migrated from a Microsoft Access Database to a MySQL database. Hence the domain object use table name 
