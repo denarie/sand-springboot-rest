@@ -11,6 +11,20 @@ The sand collection domain consists of
  * Link: information linked to a sand object, this can be internet links (urls) or image links
  * SandProperty: some settings for the application
 
+## What is in this project
+This project contains a REST backend interface that was created using Spring Data REST.
+
+The application uses the following databases:
+* H2 for UnitTests
+* mySQL for development and production, that already contains some data 
+
+The application is accessible at 
+* http://localhost:8080/manage the SpringBoot Actuator managment console
+* http://localhost:8080/sanddb starts the HAL explorer so explore the REST interface
+
+For example: to get a list of sands, use
+http://localhost:8080/sanddb/sand
+
 ## Howto build and run
 
 Sometimes starting via IntelliJ does not work because of Lombok
