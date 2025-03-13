@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>de.denarie</groupId>
-	<artifactId>sand</artifactId>
+	<artifactId>sand-springboot-rest</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>sand</name>
+	<name>sand-springboot-rest</name>
 	<description>Sand DB Backend with Spring Boot Data Rest</description>
 	<url/>
 	<licenses>
