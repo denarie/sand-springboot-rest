@@ -18,7 +18,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
-public class SandRepositoryTest {
+public class RepositoryReadOnlyTest {
 
     @Autowired
     SandRepository sandRepository;
@@ -34,6 +34,8 @@ public class SandRepositoryTest {
 
     private Continent continent1;
     private Continent continent2;
+    private Country country1;
+    private Person person1;
 
 
     @BeforeEach
@@ -42,10 +44,10 @@ public class SandRepositoryTest {
         Sand sand2 = Sand.builder().name("sand2").longname("sand2 longname").build();
         Sand sand3 = Sand.builder().name("sand3").longname("sand3 longname").build();
 
-        Person person1 = Person.builder().name("person1").build();
+        person1 = Person.builder().name("person1").build();
         Person person2 = Person.builder().name("person2").build();
 
-        Country country1 = Country.builder().nameDe("country1").build();
+        country1 = Country.builder().nameDe("country1").build();
         Country country2 = Country.builder().nameDe("country2").build();
         Country country3 = Country.builder().nameDe("country3").build();
         Country country4 = Country.builder().nameDe("country4").build();
@@ -85,7 +87,7 @@ public class SandRepositoryTest {
 
     @Transactional
     @Test
-    void testReadSandList() {
+    void readOnlyTests() {
         long count = sandRepository.count();
         assertEquals(3, count);
 
@@ -106,5 +108,20 @@ public class SandRepositoryTest {
 
         List<Sand> allSandsByContinent2 = sandRepository.findAllSandsByContinent(continent2.getId());
         assertEquals(1, allSandsByContinent2.size());
+
+        Page<Sand> allSandsPagedContinent1 = sandRepository.findAllSandsByContinentWithPagination(continent1.getId(), PageRequest.of(10, 10));
+        assertEquals(3, allSandsPagedContinent1.getTotalElements());
+
+        Page<Sand> allSandsPagedContinent2 = sandRepository.findAllSandsByContinentWithPagination(continent2.getId(), PageRequest.of(10, 10));
+        assertEquals(1, allSandsPagedContinent2.getTotalElements());
+
+        Page<Sand> sand1Longname = sandRepository.findByLongnameLikeIgnoreCase("SAND1 longname", PageRequest.of(10, 10));
+        assertEquals(1, sand1Longname.getTotalElements());
+
+        Page<Sand> byPersonsId = sandRepository.findByPersonsId(person1.getId(), PageRequest.of(10, 10));
+        assertEquals(2, byPersonsId.getTotalElements());
+
+        Page<Sand> byCountryId = sandRepository.findByCountryId(country1.getId(), PageRequest.of(10, 10));
+        assertEquals(1, byCountryId.getTotalElements());
     }
 }
