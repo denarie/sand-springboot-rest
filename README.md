@@ -57,7 +57,7 @@ mvn clean verify
 
 Run with profile dev:
 ```
-java -jar -Dspring.profiles.active=dev target/sand-0.0.1-SNAPSHOT.jar 
+java -jar -Dspring.profiles.active=dev target/sand-springboot-rest-0.0.1-SNAPSHOT.jar 
 ```
 
 Run in production:
@@ -67,7 +67,7 @@ On the production server create a subdirectory in the directory where the jar fi
 config/application-prod.properties
 
 ```
-java -jar -Dspring.profiles.active=prod sand-0.0.1.jar 
+java -jar -Dspring.profiles.active=prod sand-springboot-rest-0.0.1.jar 
 ```
 
 On some servers you need to define java home and add it to the path so that the application runs:
