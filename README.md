@@ -1,8 +1,8 @@
-# Sand Collectors Demo Applications: SpringBoot Data REST Backend
+# Sand Collectors Demo Applications: SpringBoot Data hypermedia-driven REST Backend
 
 This is the sand collection backend of the sand collection applications.
-It was migrated from a Microsoft Access Database to a MySQL database. Hence the domain object use table name 
-and column name annotations to map the existing names.
+It was migrated from a Microsoft Access Database to a MySQL database. Hence the domain objects use table name s
+and column names annotations to map the existing names.
 
 The sand collection domain consists of
  * Sand: the sand samples that were collected with their geo coordinates
@@ -12,11 +12,12 @@ The sand collection domain consists of
  * SandProperty: some settings for the application
 
 ## What is in this project
-This project contains a REST backend interface that was created using Spring Data REST.
+This project contains a REST backend interface that was created using Spring Data REST and offers 
+hypermedia-driven REST serivces
 
 The application uses the following databases:
 * H2 for UnitTests
-* mySQL for development and production, that already contains some data 
+* mySQL for development and production, that already contain some data 
 
 The application is accessible at 
 * http://localhost:8080/manage the SpringBoot Actuator management console
