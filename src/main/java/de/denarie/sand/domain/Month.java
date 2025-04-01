@@ -12,10 +12,11 @@ import lombok.*;
  * TODO redesign
  *
  */
-@Data
+@Getter
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "t_monate")
 public class Month {

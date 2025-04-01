@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
-import org.hibernate.annotations.OnDelete;
-import org.hibernate.annotations.OnDeleteAction;
 
 
 /**
@@ -17,10 +15,13 @@ import org.hibernate.annotations.OnDeleteAction;
  * </ul>
  *
  */
-@Data
+@EqualsAndHashCode(exclude = {"sand"})
+@ToString(exclude = {"sand"})
+@Getter
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "t_links", indexes = {
         @Index(name = "SandID", columnList = "SandID")

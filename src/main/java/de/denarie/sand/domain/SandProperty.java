@@ -10,10 +10,11 @@ import lombok.*;
  * This object is used to store configuration for the application.
  *
  */
-@Data
+@Getter
+@Setter
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "t_einstellungen")
 public class SandProperty {

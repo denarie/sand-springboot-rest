@@ -16,12 +16,14 @@ import java.util.Set;
  * Represents an item in the sand collection.
  *
  */
+@EqualsAndHashCode(exclude = {"persons", "country"})
+@ToString(exclude = {"persons", "country"})
 @Getter
 @Setter
 @Builder
-@Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
 @Table(name = "t_sand")
 public class Sand {
 
